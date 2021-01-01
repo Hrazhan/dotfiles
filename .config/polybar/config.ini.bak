@@ -1,0 +1,323 @@
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+;;
+;;	    ____        __      __              
+;;	   / __ \____  / /_  __/ /_  ____ ______
+;;	  / /_/ / __ \/ / / / / __ \/ __ `/ ___/
+;;	 / ____/ /_/ / / /_/ / /_/ / /_/ / /    
+;;	/_/    \____/_/\__, /_.___/\__,_/_/     
+;;	              /____/                    
+;;
+;;
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[global/wm]
+;margin-bottom = 1
+;margin-top = 1
+
+;;====================================================
+
+
+[settings]
+compositing-underline = over
+
+;;====================================================
+
+[color]
+
+bg = #1F1F1F
+fg = #FFFFFF
+fg-alt = #A9ABB0
+
+acolor = #e53935
+curgent = #e53935
+coccupied = #1e88e5
+
+## Material Colors
+
+red = #e53935
+pink = #d81b60
+purple = #8e24aa
+deep-purple = #5e35b1
+indigo = #3949ab
+blue = #1e88e5
+light-blue = #039be5
+cyan = #00acc1
+teal = #00897b
+green = #43a047
+light-green = #7cb342
+lime = #c0ca33
+yellow = #fdd835
+amber = #ffb300
+orange = #fb8c00
+deep-orange = #f4511e
+brown = #6d4c41
+grey = #757575
+blue-gray = #546e7a
+
+;==========================================================
+
+[bar/main]
+monitor = eDP-1 
+width = 97.4%
+height = 40
+offset-x = 1.4%
+offset-y = 2%
+bottom = false
+fixed-center = true
+line-size = 2
+
+background = ${color.bg}
+foreground = ${color.fg}
+
+border-size = 3
+border-color = ${color.bg}
+
+module-margin-left = 1
+module-margin-right = 1
+
+;==========================================================
+
+font-0 = "Fantasque Sans Mono:pixelsize=12;2"
+font-1 = "Material Icons:size=13;4"
+font-2 = "Font Awesome 5 Free:style=Regular:size=13;2"
+;font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=13;2"
+;==========================================================
+
+cursor-click = pointer
+
+;tray-position = right
+;tray-padding = 0
+;tray-maxsize = 16
+enable-ipc = true
+
+; change this to bspwm
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+;== Module Location ========================================================
+
+modules-left = menu bspwm term files browser settings
+modules-right = pkgupdates-available backlight volume battery network date powermenu
+ 
+;== Modules ========================================================
+
+[module/menu]
+type = custom/text
+content = 
+;alt-icon = 
+content-padding = 2
+content-background = ${color.acolor}
+content-foreground = ${color.fg}
+click-left = $HOME/.config/polybar/scripts/menu
+click-middle = $HOME/.config/polybar/scripts/menu_full
+click-right = $HOME/.config/polybar/scripts/color-switch.sh
+
+[module/bspwm]
+type = internal/bspwm
+pin-workspaces = false 
+enable-click = true
+enable-scroll = true
+fuzzy-match = true
+
+ws-icon-0 = a; 
+ws-icon-1 = b; 
+ws-icon-2 = c;
+ws-icon-3 = d;
+ws-icon-4 = e; 
+ws-icon-7 = 7; 
+ws-icon-default = ♟
+
+format = <label-state> <label-mode>
+label-monitor = %name%
+
+label-dimmed-foreground = ${color.acolor}
+label-dimmed-underline = ${color.acolor}
+label-dimmed-focused-background = #f00
+
+label-focused = %icon% 
+label-focused-foreground = ${color.acolor}
+;label-focused-background = ${color.fg} 
+label-focused-underline = ${color.acolor} 
+
+label-occupied = %icon%
+label-occupied-underline = ${color.coccupied}
+
+label-urgent = %icon%
+label-urgent-foreground = ${color.curgent}
+label-urgent-background = ${color.red} 
+label-urgent-underline = ${color.curgent}
+
+label-empty = %icon%
+label-empty-foreground = ${color.fg}
+
+;label-monocle = 
+;label-tiled = 
+;label-fullscreen = 
+;label-floating = 
+;label-pseudotiled = P
+;label-locked = 
+;label-locked-foreground = #bd2c40
+;label-sticky = 
+;label-sticky-foreground = #fba922
+;label-private = 
+;label-private-foreground = #bd2c40
+;label-marked = M
+
+; Separator in between workspaces
+label-separator = |
+label-separator-padding = 2
+label-separator-foreground = ${color.acolor}
+
+
+[module/term]
+type = custom/text
+content = 
+content-foreground = ${color.fg-alt}
+click-left = alacritty &
+click-middle = urxvt &
+click-right = alacritty &
+
+[module/files]
+type = custom/text
+content = 
+content-padding = 1
+content-foreground = ${color.fg-alt}
+click-left = thunar &
+click-right = ranger &
+
+
+[module/browser]
+type = custom/text
+content = 
+content-padding = 1
+content-foreground = ${color.fg-alt}
+click-left = chromium &
+click-right = firefox &
+
+[module/settings]
+type = custom/text
+content = 
+content-padding = 1
+content-foreground = ${color.fg-alt}
+click-left = xfce4-settings &
+click-right = lxappearance &
+
+;==========================================================
+
+;[module/mpd]
+;type = internal/mpd
+;;format-online = <toggle> <label-song> 
+;format-online =  <label-song> 
+;
+;icon-play = 
+;icon-pause = 
+;
+;label-song-maxlen = 25
+;label-song-ellipsis = true
+
+;==========================================================
+
+
+
+;===========================================================
+[module/pkgupdates-available]
+type = custom/script
+exec = $HOME/.config/polybar/scripts/updates.sh
+;exec = checkforupdates 
+;exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
+;label = %{A1:alacritty -e "yay -Syyu" & disown:} %{A3:alacritty -e "yay -Syyu" & disown:}%output%%{A} %{A}
+tail = true
+
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+enable-scroll = true
+
+format = <ramp> 
+
+;label = %percentage%%
+
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+
+
+;==========================================================
+[module/battery]
+type = internal/battery
+full-at = 99
+time-format = %H:%M
+battery = BAT0
+adapter = ADP1
+format-charging = <animation-charging> <label-charging>
+;label-charging = %percentage%% (%time%)
+label-charging = %percentage%%
+format-discharging = <ramp-capacity> <label-discharging>
+;label-discharging = %percentage%% (%time%)
+label-discharging = %percentage%%
+format-full = <label-full>
+
+format-full-prefix = " "
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+ramp-capacity-0-foreground = ${color.red}
+ramp-capacity-foreground   = ${color.fg}
+bar-capacity-width = 10
+
+animation-charging-0 = ""
+animation-charging-1 = ""
+animation-charging-2 = ""
+animation-charging-3 = ""
+animation-charging-4 = ""
+
+animation-charging-framerate = 750
+
+[module/volume]
+type = internal/alsa
+;speaker-mixer = Speaker
+;headphone-mixer = Headphone
+;headphone-id = 16
+;mapped = true
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+format-muted-prefix = " "
+label-muted = MUTE
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-volume-4 = 
+ramp-volume-5 = 
+ramp-volume-6 = 
+
+[module/network]
+type = custom/script
+exec = $HOME/.config/polybar/scripts/check-network
+click-left = networkmanager_dmenu &
+click-right = networkmanager_dmenu &
+tail = true
+
+[module/date]
+type = internal/date
+interval = 30
+label =  %time%
+time =  %H:%M %p
+time-alt =  %Y-%m-%d
+
+[module/powermenu]
+type = custom/text
+content = 
+content-padding = 2
+content-background = ${color.acolor}
+content-foreground = ${color.fg}
+click-left = $HOME/.config/polybar/scripts/sysmenu
+click-right = $HOME/.config/polybar/scripts/sysmenu
+
+;== EOF ========================================================
