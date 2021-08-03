@@ -29,8 +29,8 @@ super + e
     rofimoji
 
 # Toggling the bar
-super + i
-    polybar-msg cmd toggle; bspc config bottom_padding 0
+# super + i
+#     polybar-msg cmd toggle; bspc config bottom_padding 0
 #    /home/razhan/.config/polybar/scripts/toggle-bar.sh {hide,show}
 
 # Reload this sxhkd config file 
