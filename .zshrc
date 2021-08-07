@@ -36,6 +36,17 @@ autoload -U zcalc
 
 
 #alias vim='nvim'
+
+alias n='nvim'
+alias install='sudo pacman -S'
+alias search='sudo pacman -Ss'
+alias remove='sudo pacman -R'
+alias update='sudo pacman -Sy'
+alias yinstall='yay -S'
+alias ysearch='yay -Ss'
+alias yremove='yay -R'
+alias yupdate='yay -Sy'
+alias c="clear"
 alias l='exa -Fhl --git'
 alias la='exa -Fhla --git'
 alias ls='exa -F'
@@ -56,8 +67,10 @@ alias on='optimus-manager --switch nvidia'
 alias oi='optimus-manager --switch integrated'
 alias os='optimus-manager --status'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias yt='youtube-dl'
+alias sa='source /opt/anaconda/bin/activate root'
 
-PROMPT='%(?.%F{green}√.%F{red}?%?)%f %B%F{240}%1~%f%b %# '
+# PROMPT='%(?.%F{green}√.%F{red}?%?)%f %B%F{240}%1~%f%b %# '
 
 
 
@@ -71,8 +84,21 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+if [[ -a ~/.localrc ]]; then
+  source ~/.localrc
+fi
+
 export GOPATH=$HOME/go
 
 export PATH="$PATH:/home/razhan/tools/flutter/bin"
 
 _JAVA_AWT_WM_NONREPARENTING=1
+
+export PATH="$PATH:/home/razhan/.config/composer/vendor/bin"
+
+export PATH=~/.npm-global/bin:$PATH
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
