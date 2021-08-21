@@ -57,7 +57,8 @@ Plug 'xolox/vim-session'
 Plug 'honza/vim-snippets'
 
 "" Theme & Icons 
-Plug 'sainnhe/gruvbox-material'
+" Plug 'sainnhe/gruvbox-material'
+Plug 'ghifarit53/tokyonight-vim'
 
 " coc.nvim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -156,11 +157,15 @@ set number
 
 let no_buffers_menu=1
 
-set background=dark
-let g:gruvbox_material_background = 'soft'
-let g:gruvbox_material_palette = 'material'
-let g:gruvbox_material_transparent_background = 1
-silent! colorscheme gruvbox-material
+" set background=dark
+
+set termguicolors
+
+let g:tokyonight_style = 'storm' " available: night, storm
+let g:tokyonight_enable_italic = 1
+let g:tokyonight_transparent_background = 0
+
+colorscheme tokyonight
 
 set mousemodel=popup
 set t_Co=256
