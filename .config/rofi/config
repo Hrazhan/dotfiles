@@ -1,2 +1,2 @@
-rofi.theme: ~/.config/rofi/slate.rasi 
+rofi.theme: ~/.config/rofi/tokoyonight.rasi 
 rofi.lines: 10
