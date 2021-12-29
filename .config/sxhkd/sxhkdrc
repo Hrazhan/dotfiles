@@ -22,11 +22,20 @@ super + shift + Return
 
 # Program Launcher
 super + space
-    rofi -modi run,drun -show drun -location 7 -yoffset -50 -xoffset 15 -line-padding 4 -columns 1 -width 25 -padding 25 -show-icons -drun-icon-theme "Papirus" -font "Iosevka 14"
+    rofi -no-lazy-grab -show drun -modi drun -theme "$HOME/.config/rofi/launchers/ribbon/ribbon_left_round.rasi"
+
+# QMUL shortcuts
+super + a
+    "$HOME/.config/rofi/applets/applets/qmul.sh"
 
 # Rofimoji
 super + e
     rofimoji
+
+# Scripts
+super + shift + r
+  "$HOME/.local/bin/redshift_toggle"
+
 
 # Toggling the bar
 # super + i
@@ -69,6 +78,12 @@ super + ctrl + s
 #####################
 # bspwm Hotkeys
 #####################
+
+# gaps
+# super + shift + alt  + g
+#   bspc config window_gap 0
+# super + shift + g
+#   bspc config window_gap 10
 
 # quit/restart bspwm
 super + alt + {q,r}

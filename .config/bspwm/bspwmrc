@@ -1,6 +1,12 @@
 #! /bin/sh
 
 
+focused=$(xrdb ~/.config/X11/xresources -query all | grep color7 | cut -f2)
+normal=$(xrdb ~/.config/X11/xresources -query all | grep color8 | cut -f2)
+
+fg=$(xrdb ~/.config/X11/xresources -query all | grep foreground | cut -f2)
+bg=$(xrdb ~/.config/X11/xresources -query all | grep background | cut -f2)
+
 killall -w sxhkd picom polybar &
 sleep 0.1
 
@@ -9,41 +15,50 @@ xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 #hide mouse while typing
 unclutter idle 2 &
 
-picom &
 # start libinput-gestures
 libinput-gestures-setup start
 
-feh --bg-fill --no-fehbg --randomize ~/Images/Wallpapers
-sxhkd & 
+feh --bg-fill ~/Images/Wallpapers/space.png
 
-external_monitor=$(xrandr --query | grep 'HDMI-0')
-if [[ $external_monitor = *connected* ]]; 
+
+
+dunst -lb "$bg" -nb "$bg" -cb "$bg" -lf "$fg" -bf "$fg" -cf "$fg" -nf "$fg" -fn "Iosevka Extrabold 12" -s -geometry "280x6-10+43" -format "<b>%s</b>\n%b" -separator_height 0 -key "ctrl+space" -all_key "space" -corner_radius 8 -padding 20 -horizontal_padding 20 -min_icon_size 40 -max_icon_size 80 -frame_width 0 -alignment "center" &
+
+sxhkd & 
+# dunst &
+floating_noborder &
+picom &
+
+external_monitor=$(xrandr --query | grep 'HDMI-0' | awk '{print $2}')
+echo $external_monitor
+if [ $external_monitor = "connected" ]; 
 then
     xrandr --output eDP-1-1 --primary --mode 1920x1080 --rotate normal --output HDMI-0 --mode 1920x1080 --rotate normal --right-of eDP-1-1 
     bspc wm --reorder-monitors HDMI-0 eDP-1-1
-    bspc monitor HDMI-0 -d a b c d e 
-    bspc monitor eDP-1-1 -d f g h i j 
-    
+    bspc monitor HDMI-0 -d TERM CODE WEB MEDIA FILES
+    bspc monitor eDP-1-1 -d EXTRA    
     polybar main -c $HOME/.config/polybar/configMonitor.ini 2> /dev/null &
     sleep 0.1
     polybar secondary -c $HOME/.config/polybar/configMonitor.ini 2> /dev/null &
 else
-    bspc monitor -d a b c d e 
+    bspc monitor -d  TERM CODE WEB MEDIA FILES EXTRA
     polybar main -c $HOME/.config/polybar/config.ini 2> /dev/null &
 fi
 
-bspc config border_width          0
-bspc config window_gap            25
-#bspc config top_padding           25
+bspc config focused_border_color  "$focused"
+bspc config normal_border_color   "$normal"
+bspc config border_width          2
+bspc config window_gap            10
+bspc config top_padding           35
 bspc config split_ratio           0.52
 bspc config borderless_monocle    true
 bspc config gapless_monocle       false 
+bspc config single_monocle        true
 bspc config focus_follows_pointer false
 
 bspc rule -a feh state=floating
-bspc rule -a firefox desktop='^2' follow=on focus=on 
-bspc rule -a Thunar desktop='^5' follow=on focus=on 
-bspc rule -a Chromium desktop='^2' follow=on 
+bspc rule -a firefox desktop='^3' follow=on focus=on 
+bspc rule -a Chromium desktop='^3' follow=on 
 bspc rule -a sxiv state=pseudo_tiled
 bspc rule -a "QML Timer" state=pseudo_tiled
 bspc rule -a mpv desktop='^4' follow=on state=pseudo_tiled

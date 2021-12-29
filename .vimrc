@@ -157,7 +157,7 @@ set number
 
 let no_buffers_menu=1
 
-" set background=dark
+set background=dark
 
 set termguicolors
 
