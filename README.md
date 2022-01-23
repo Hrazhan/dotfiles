@@ -33,3 +33,5 @@ git clone --bare git@github.com:Hrazhan/dotfiles.git $HOME/workspace/dotfiles
 dotfiles checkout
 dotfiles config --local status.showUntrackedFiles no
 ```
+
+Copy the content of lightdm and optimus-manager manually
