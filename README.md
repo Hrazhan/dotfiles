@@ -26,10 +26,10 @@
 ```shell
 mv ~/.config ~/.config-bak
 mkdir -p ~/.config/ ~/workspace
-echo 'alias config="/usr/bin/git --git-dir=$HOME/workspace/dotfiles/ --work-tree=$HOME"' >> $HOME/.zshrc
+echo 'alias dotfiles="/usr/bin/git --git-dir=$HOME/workspace/dotfiles/ --work-tree=$HOME"' >> $HOME/.zshrc
 source ~/.zshrc && mv ~/.zshrc ~/.zshrc-bak
 echo "workspace/dotfiles" >> .gitignore
 git clone --bare git@github.com:Hrazhan/dotfiles.git $HOME/workspace/dotfiles
-config checkout
-config config --local status.showUntrackedFiles no
+dotfiles checkout
+dotfiles config --local status.showUntrackedFiles no
 ```
