@@ -18,7 +18,8 @@ unclutter idle 2 &
 # start libinput-gestures
 libinput-gestures-setup start
 
-feh --bg-fill ~/Images/Wallpapers/space.png
+# feh --bg-fill ~/Images/Wallpapers/space.png
+feh --bg-fill ~/Images/Wallpapers/mountains.png
 
 
 
@@ -63,5 +64,7 @@ bspc rule -a sxiv state=pseudo_tiled
 bspc rule -a "QML Timer" state=pseudo_tiled
 bspc rule -a mpv desktop='^4' follow=on state=pseudo_tiled
 bspc rule -a vlc desktop='^4' follow=on state=pseudo_tiled
+bspc rule -a Zathura state=tiled
+
 
 #$HOME/.config/polybar/launch.sh

@@ -1,6 +1,6 @@
 sandbox strict
 set selection-clipboard clipboard
-set recolor
+/* set recolor */
 set page-padding 1
 set statusbar-v-padding 2
 set statusbar-h-padding 20
